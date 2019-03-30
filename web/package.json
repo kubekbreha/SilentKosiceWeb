@@ -15,11 +15,5 @@
   "bugs": {
     "url": "https://github.com/kubekbreha/SilentKosiceWeb/issues"
   },
-  "homepage": "https://github.com/kubekbreha/SilentKosiceWeb#readme",
-  "dependencies": {
-    "bootstrap": "^4.3.1",
-    "express": "^4.16.4",
-    "jquery": "^3.3.1",
-    "path": "^0.12.7"
-  }
+  "homepage": "https://github.com/kubekbreha/SilentKosiceWeb#readme"
 }
