@@ -1,7 +1,17 @@
-#map {
+/*#map {*/
+/*    width: 100%;*/
+/*    height: 9100px;*/
+/*    background-color: black;*/
+/*}*/
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.cntr, .cntr > div, .cntr > div #map {
+    height: inherit;
     width: 100%;
-    height: 700px;
-    background-color: black;
 }
 
 #floating-panel {
@@ -10,12 +20,11 @@
     left: 25%;
     z-index: 5;
     background-color: #fff;
-    padding: 5px;
     border: 1px solid #999;
     text-align: center;
     font-family: 'Roboto','sans-serif';
     line-height: 30px;
-    padding-left: 10px;
+    padding: 5px 5px 5px 10px;
 }
 #floating-panel {
     background-color: #fff;
