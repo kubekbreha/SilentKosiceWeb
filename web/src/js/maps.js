@@ -1,25 +1,30 @@
-function initMap() {
+async function initMap() {
     // The location of Uluru
     var kosice = {lat: 48.716, lng: 21.261};
 
     let mapData = [
-        {location: new google.maps.LatLng(48.716, 21.261), weight: 60},
-        {location: new google.maps.LatLng(48.7162, 21.261), weight: 5},
-        {location: new google.maps.LatLng(48.716, 21.257), weight: 2},
-        {location: new google.maps.LatLng(48.716, 21.255), weight: 2},
-        {location: new google.maps.LatLng(48.716, 21.253), weight: 2},
-        {location: new google.maps.LatLng(48.716, 21.251), weight: 3},
-        {location: new google.maps.LatLng(48.716, 21.249), weight: 0.1},
-        {location: new google.maps.LatLng(48.716, 21.247), weight: 6},
-        {location: new google.maps.LatLng(48.716, 21.245), weight: 2},
-        {location: new google.maps.LatLng(48.716, 21.243), weight: 2},
-        {location: new google.maps.LatLng(48.716, 21.241), weight: 2},
-        {location: new google.maps.LatLng(48.716, 21.239), weight: 2},
-        {location: new google.maps.LatLng(48.716, 21.237), weight: 2},
-        {location: new google.maps.LatLng(48.716, 21.235), weight: 2},
-        {location: new google.maps.LatLng(48.716, 21.233), weight: 2},
-        {location: new google.maps.LatLng(48.716, 21.231), weight: 2}
     ];
+
+    // {location: new google.maps.LatLng(37.782, -122.447), weight: 0.5},
+    getDatas().then(data => {
+        let key = Object.keys(data.val());
+
+        key.forEach(d => {
+            // let key_2 = Object.keys(data.val()[d].records);
+            Object.keys(data.val()[d].records).forEach(b => {
+                let datas = data.val()[d].records[b];
+                console.log(datas.lat);
+                let obj = {location: new google.maps.LatLng(datas.lat,datas.long), weight: datas.weight};
+                mapData.push(obj);
+
+                // console.log(data.val()[d].records[b]);
+            });
+
+            // console.log(data.val()[d].records[key_2]);
+            // console.log(data.val()[d].records);
+        });
+
+        console.log(mapData[1]);
 
     // The map, centered at Uluru
     var map = new google.maps.Map(
@@ -220,7 +225,31 @@ function initMap() {
     heatmap.setMap(map);
     // The marker, positioned at Uluru
     // var marker = new google.maps.Marker({position: kosice, map: map});
+
+    });
+
 }
 
 
+
+//objet config for connect FB DB & init
+
+var config = {
+    apiKey: "AIzaSyDdRQicgJICyozuHR82NVihur5vyY7rW7w",
+    authDomain: "silentkosice.firebaseapp.com",
+    databaseURL: "https://silentKosice.firebaseio.com",
+    storageBucket: "silentkosice.appspot.com"
+};
+
+const getDatas = async  () =>  {
+    firebase.initializeApp(config);
+    var database = firebase.database();
+
+    database.goOnline();
+
+    var ref = database.ref("/");
+
+    return ref.once('value');
+
+};
 
