@@ -14,7 +14,8 @@ async function initMap() {
                 Object.keys(data.val()[d].records).forEach(b => {
                     let datas = data.val()[d].records[b];
                     console.log(datas.lat);
-                    let obj = {location: new google.maps.LatLng(datas.lat, datas.long), weight: datas.decibel/4};
+                    let obj = {location: new google.maps.LatLng(datas.lat, datas.long), weight: datas.decibel/10};
+                    // let obj = {location: new google.maps.LatLng(datas.lat, datas.long), weight: 10};
                     mapData.push(obj);
 
                     let gps = new google.maps.LatLng(datas.lat, datas.long);
@@ -210,37 +211,47 @@ async function initMap() {
                 data: mapData
             });
 
-            var gradient = [
-                'rgba(0, 0, 0, 0)',
-                'rgba(67, 160, 71, 0.1)',
-                'rgba(67, 160, 71, 0.3)',
-                'rgba(67, 160, 71, 0.4)',
-                'rgba(67, 160, 71, 0.6)',
-                'rgba(67, 160, 71, 0.7)',
-                'rgba(67, 160, 71, 1)',
-                // 'rgba(255, 0, 0, 1)'
-            ];
+            // var gradient = [
+            //     'rgba(0, 0, 0, 0)',
+            //     'rgba(67, 160, 71, 0.1)',
+            //     'rgba(67, 160, 71, 0.3)',
+            //     'rgba(67, 160, 71, 0.4)',
+            //     'rgba(67, 160, 71, 0.6)',
+            //     'rgba(67, 160, 71, 0.7)',
+            //     'rgba(67, 160, 71, 1)',
+            //     // 'rgba(255, 0, 0, 1)'
+            // ];
+
 
         // var gradient = [
-        //     'rgba(0, 255, 255, 0)',
-        //     'rgba(0, 255, 255, 1)',
-        //     'rgba(0, 191, 255, 1)',
-        //     'rgba(0, 127, 255, 1)',
-        //     'rgba(0, 63, 255, 1)',
-        //     'rgba(0, 0, 255, 1)',
-        //     'rgba(0, 0, 223, 1)',
-        //     'rgba(0, 0, 191, 1)',
-        //     'rgba(0, 0, 159, 1)',
-        //     'rgba(0, 0, 127, 1)',
-        //     'rgba(63, 0, 91, 1)',
-        //     'rgba(127, 0, 63, 1)',
-        //     'rgba(191, 0, 31, 1)',
-        //     'rgba(255, 0, 0, 1)'
-        // ]
+        //     'rgba(0, 0, 0, 0)',
+        //     'rgba(67, 160, 71, 0.1)',
+        //     'rgba(67, 160, 71, 0.3)',
+        //     'rgba(67, 160, 71, 0.4)',
+        //     'rgba(67, 160, 71, 0.6)',
+        //     'rgba(67, 160, 71, 0.7)',
+        //     'rgba(67, 160, 71, 1)',
+        //     // 'rgba(255, 0, 0, 1)'
+        // ];
+
+        var gradient = [
+            'rgba(0, 255, 0, 0)',
+            'rgba(0, 255, 0, 1)',
+            // 'rgba(0, 191, 0, 1)',
+            'rgba(255, 140, 0, 1)',
+            // 'rgba(255, 255, 0, 1)',
+            // 'rgba(0, 0, 0, 1)',
+            // 'rgba(0, 0, 223, 1)',
+            // 'rgba(0, 0, 191, 1)',
+            // 'rgba(0, 0, 159, 1)',
+            // 'rgba(0, 0, 127, 1)'
+
+            'rgba(255, 0, 0, 1)'
+        ]
 
             heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
-            heatmap.set('radius', heatmap.get('radius') ? null : 50);
-            heatmap.set('maxIntensity', heatmap.get('maxIntensity') ? null : 10);
+            heatmap.set('radius', heatmap.get('radius') ? null : 100);
+            heatmap.set('maxIntensity', heatmap.get('maxIntensity') ? null : 15);
             heatmap.set('dissipating', heatmap.get('dissipating') ? null : true);
 
             heatmap.setMap(map);
