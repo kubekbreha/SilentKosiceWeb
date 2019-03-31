@@ -11,6 +11,7 @@ async function initMap() {
         var infowindow = "";
         key.forEach(d => {
             // let key_2 = Object.keys(data.val()[d].records);
+            console.log(data.val());
             Object.keys(data.val()[d].records).forEach(b => {
                 let datas = data.val()[d].records[b];
                 console.log(datas.lat);
@@ -19,7 +20,7 @@ async function initMap() {
                 mapData.push(obj);
 
                 let gps = new google.maps.LatLng(datas.lat, datas.lon);
-                console.log("lat: ", gps.lat(), "lng: ", gps.lng());
+                console.log("lat: ", gps.lat(), "lng: ", gps.lng(), "db: ", datas.decibel);
 
 
                 var dateTimeString = moment(parseInt(datas.timestamp) * 1000).format("DD-MM-YYYY HH:mm:ss");
