@@ -14,11 +14,11 @@ async function initMap() {
             Object.keys(data.val()[d].records).forEach(b => {
                 let datas = data.val()[d].records[b];
                 console.log(datas.lat);
-                let obj = {location: new google.maps.LatLng(datas.lat, datas.long), weight: datas.decibel / 15};
+                let obj = {location: new google.maps.LatLng(datas.lat, datas.lon), weight: datas.decibel / 15};
                 // let obj = {location: new google.maps.LatLng(datas.lat, datas.long), weight: 10};
                 mapData.push(obj);
 
-                let gps = new google.maps.LatLng(datas.lat, datas.long);
+                let gps = new google.maps.LatLng(datas.lat, datas.lon);
                 console.log("lat: ", gps.lat(), "lng: ", gps.lng());
 
 
@@ -261,7 +261,7 @@ async function initMap() {
             addMarker({lat: test[i].lat, lng: test[i].lng}, map, test[i].time, test[i].db);
         }
 
-        function addMarker(location, map, title,Db) {
+        function addMarker(location, map, title, Db) {
             let marker = new google.maps.Marker({
                 position: location,
                 title: title,
@@ -285,7 +285,9 @@ async function initMap() {
 
             marker.addListener('click', () => {
                 infowindow.open(map, marker);
-                setTimeout( () => { infowindow.close(); }, 5000);
+                setTimeout(() => {
+                    infowindow.close();
+                }, 3000);
 
             });
 
@@ -293,15 +295,20 @@ async function initMap() {
             //     infowindow.close();
             // });
 
+            // var geocoder = new google.maps.Geocoder;
+            // geocoder.geocode({'location': {lat: location.lat, lng: location.lng}}, function (results, status) {
+            //
+            //     console.log(results[0].formatted_address);
+            // });
+
             var contentString = '<div id="content">' +
                 '<div id="siteNotice">' +
                 '</div>' +
-                `<h1 id="firstHeading" class="firstHeading">Db: ${Db}</h1>` +
+                `<h1 id="firstHeading" class="firstHeading">dB: ${Db}</h1>` +
                 '<div id="bodyContent">' +
                 `<p>Time: ${title}</p>` +
-                `<p>Value: ${Db}Db</p>` +
-                `<p>Position: ${location.lat}, ${location.lng}</p>` +
-
+                `<p>Latitude: ${location.lat.toFixed(4)}</p>` +
+                `<p>Longitude: ${location.lng.toFixed(4)}</p>` +
                 '</div>' +
                 '</div>';
 
@@ -313,8 +320,6 @@ async function initMap() {
 
 
     });
-
-
 
 
 }
