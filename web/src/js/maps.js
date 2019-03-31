@@ -39,7 +39,7 @@ async function initMap() {
             // The map, centered at Uluru
             var map = new google.maps.Map(
                 document.getElementById('map'), {
-                    zoom: 13,
+                    zoom: 15,
                     center: kosice,
                     dissipating: false,
                     styles:
@@ -213,19 +213,18 @@ async function initMap() {
             var gradient = [
                 'rgba(0, 0, 0, 0)',
                 'rgba(67, 160, 71, 0.1)',
-                'rgba(67, 160, 71, 0.2)',
                 'rgba(67, 160, 71, 0.3)',
                 'rgba(67, 160, 71, 0.4)',
-                'rgba(67, 160, 71, 0.45)',
-                'rgba(67, 160, 71, 0.5)',
+                'rgba(67, 160, 71, 0.6)',
+                'rgba(67, 160, 71, 0.7)',
                 'rgba(67, 160, 71, 1)',
                 // 'rgba(255, 0, 0, 1)'
             ];
 
             heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
-            heatmap.set('radius', heatmap.get('radius') ? null : 50);
-            heatmap.set('maxIntensity', heatmap.get('maxIntensity') ? null : 20);
-            heatmap.set('dissipating', heatmap.get('dissipating') ? null : true);
+            heatmap.set('radius', heatmap.get('radius') ? null : 10);
+            heatmap.set('maxIntensity', heatmap.get('maxIntensity') ? null : 40);
+            // heatmap.set('dissipating', heatmap.get('dissipating') ? null : true);
 
             heatmap.setMap(map);
 
